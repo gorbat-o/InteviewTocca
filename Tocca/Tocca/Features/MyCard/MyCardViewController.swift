@@ -15,6 +15,7 @@ final class MyCardViewController: UIViewController {
 
     private var qrCodeContainer: UIView!
     private var qrCodeStackView: UIStackView!
+    private var profileImageViewContainer: UIView!
     private var profileImageView: UIImageView!
     private var profileNameLabel: UILabel!
     private var profilePositionLabel: UILabel!
@@ -40,6 +41,7 @@ final class MyCardViewController: UIViewController {
 
         setupQrCodeContainer()
         setupQrCodeStackView()
+        setupProfileImageViewContainer()
         setupProfileImageView()
         setupProfileNameLabel()
         setupProfilePositionLabel()
@@ -49,8 +51,12 @@ final class MyCardViewController: UIViewController {
         setupQrCodeCaptionLabel()
 
         setupBottomRoundedView()
+
+        setupQrCodeScanButtonContainer()
         setupQrCodeScanButtonTitleLabel()
         setupQrCodeScanButton()
+
+        setupShareButtonContainer()
         setupShareButtonTitleLabel()
         setupShareButton()
 
@@ -93,6 +99,19 @@ private extension MyCardViewController {
         qrCodeContainer.addSubview(qrCodeStackView)
     }
 
+    func setupProfileImageViewContainer() {
+        profileImageViewContainer = UIView(frame: CGRect(x: 0, y: 0, width: 80, height: 80))
+        profileImageViewContainer.translatesAutoresizingMaskIntoConstraints = false
+        profileImageViewContainer.clipsToBounds = false
+        profileImageViewContainer.layer.shadowColor = UIColor.black.cgColor
+        profileImageViewContainer.layer.shadowOpacity = 0.5
+        profileImageViewContainer.layer.shadowOffset = CGSize.zero
+        profileImageViewContainer.layer.shadowRadius = 3
+        profileImageViewContainer.layer.shadowPath = UIBezierPath(roundedRect: profileImageViewContainer.bounds,
+                                                                  cornerRadius: 40).cgPath
+        qrCodeStackView.addArrangedSubview(profileImageViewContainer)
+    }
+
     func setupProfileImageView() {
         profileImageView = UIImageView()
         profileImageView.image = UIImage(named: "randomPerson")
@@ -100,7 +119,7 @@ private extension MyCardViewController {
         profileImageView.contentMode = .scaleAspectFill
         profileImageView.clipsToBounds = true
         profileImageView.layer.cornerRadius = 40
-        qrCodeStackView.addArrangedSubview(profileImageView)
+        profileImageViewContainer.addSubview(profileImageView)
     }
 
     func setupProfileNameLabel() {
@@ -133,7 +152,7 @@ private extension MyCardViewController {
     }
 
     func setupQRCodeStackViewSpacings() {
-        qrCodeStackView.setCustomSpacing(12.0, after: profileImageView)
+        qrCodeStackView.setCustomSpacing(12.0, after: profileImageViewContainer)
         qrCodeStackView.setCustomSpacing(4.0, after: profileNameLabel)
         qrCodeStackView.setCustomSpacing(12.0, after: profilePositionLabel)
     }
@@ -166,6 +185,19 @@ private extension MyCardViewController {
         view.addSubview(qrCodeScanButtonTitleLabel)
     }
 
+    func setupQrCodeScanButtonContainer() {
+        qrCodeScanButtonContainer = UIView(frame: CGRect(x: 0, y: 0, width: 80, height: 80))
+        qrCodeScanButtonContainer.translatesAutoresizingMaskIntoConstraints = false
+        qrCodeScanButtonContainer.clipsToBounds = false
+        qrCodeScanButtonContainer.layer.shadowColor = UIColor.black.cgColor
+        qrCodeScanButtonContainer.layer.shadowOpacity = 0.3
+        qrCodeScanButtonContainer.layer.shadowOffset = CGSize.zero
+        qrCodeScanButtonContainer.layer.shadowRadius = 1
+        qrCodeScanButtonContainer.layer.shadowPath = UIBezierPath(roundedRect: qrCodeScanButtonContainer.bounds,
+                                                                  cornerRadius: 40).cgPath
+        view.addSubview(qrCodeScanButtonContainer)
+    }
+
     func setupQrCodeScanButton() {
         qrCodeScanButton = UIButton()
         qrCodeScanButton.backgroundColor = .white
@@ -174,7 +206,7 @@ private extension MyCardViewController {
         qrCodeScanButton.tintColor = UIColor(hex: 0x315CCF)
         qrCodeScanButton.translatesAutoresizingMaskIntoConstraints = false
         qrCodeScanButton.imageEdgeInsets = UIEdgeInsets(top: 25, left: 25, bottom: 25, right: 25)
-        view.addSubview(qrCodeScanButton)
+        qrCodeScanButtonContainer.addSubview(qrCodeScanButton)
     }
 
     func setupShareButtonTitleLabel() {
@@ -187,6 +219,19 @@ private extension MyCardViewController {
         view.addSubview(shareButtonTitleLabel)
     }
 
+    func setupShareButtonContainer() {
+        shareButtonContainer = UIView(frame: CGRect(x: 0, y: 0, width: 80, height: 80))
+        shareButtonContainer.translatesAutoresizingMaskIntoConstraints = false
+        shareButtonContainer.clipsToBounds = false
+        shareButtonContainer.layer.shadowColor = UIColor.black.cgColor
+        shareButtonContainer.layer.shadowOpacity = 0.3
+        shareButtonContainer.layer.shadowOffset = CGSize.zero
+        shareButtonContainer.layer.shadowRadius = 1
+        shareButtonContainer.layer.shadowPath = UIBezierPath(roundedRect: shareButtonContainer.bounds,
+                                                             cornerRadius: 40).cgPath
+        view.addSubview(shareButtonContainer)
+    }
+
     func setupShareButton() {
         shareButton = UIButton()
         shareButton.backgroundColor = .white
@@ -195,7 +240,7 @@ private extension MyCardViewController {
         shareButton.tintColor = UIColor(hex: 0x315CCF)
         shareButton.translatesAutoresizingMaskIntoConstraints = false
         shareButton.imageEdgeInsets = UIEdgeInsets(top: 25, left: 25, bottom: 25, right: 25)
-        view.addSubview(shareButton)
+        shareButtonContainer.addSubview(shareButton)
     }
 
     func setupConstraints() {
@@ -219,9 +264,14 @@ private extension MyCardViewController {
             qrCodeStackView.leadingAnchor.constraint(equalTo: qrCodeContainer.leadingAnchor, constant: 20),
             qrCodeStackView.trailingAnchor.constraint(equalTo: qrCodeContainer.trailingAnchor, constant: -20),
             qrCodeStackView.bottomAnchor.constraint(equalTo: qrCodeContainer.bottomAnchor, constant: -20),
+            // Setup profileImageViewContainer
+            profileImageViewContainer.heightAnchor.constraint(equalToConstant: 80),
+            profileImageViewContainer.widthAnchor.constraint(equalTo: profileImageViewContainer.heightAnchor),
             // Setup profileImageView
-            profileImageView.heightAnchor.constraint(equalToConstant: 80),
-            profileImageView.widthAnchor.constraint(equalTo: profileImageView.heightAnchor),
+            profileImageView.topAnchor.constraint(equalTo: profileImageViewContainer.topAnchor),
+            profileImageView.leadingAnchor.constraint(equalTo: profileImageViewContainer.leadingAnchor),
+            profileImageView.trailingAnchor.constraint(equalTo: profileImageViewContainer.trailingAnchor),
+            profileImageView.bottomAnchor.constraint(equalTo: profileImageViewContainer.bottomAnchor),
             // Setup qrCodeImageView
             qrCodeImageView.heightAnchor.constraint(lessThanOrEqualToConstant: 300),
             qrCodeImageView.widthAnchor.constraint(equalTo: qrCodeImageView.heightAnchor),
@@ -234,26 +284,40 @@ private extension MyCardViewController {
             bottomRoundedView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             bottomRoundedView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             bottomRoundedView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            // Setup QrCodeScanButtonContainer
+            qrCodeScanButtonContainer.topAnchor.constraint(equalTo: topView.bottomAnchor, constant: -40),
+            qrCodeScanButtonContainer.centerXAnchor.constraint(equalTo: topView.centerXAnchor, constant: -70),
+            qrCodeScanButtonContainer.heightAnchor.constraint(equalToConstant: 80),
+            qrCodeScanButtonContainer.widthAnchor.constraint(equalTo: qrCodeScanButtonContainer.heightAnchor),
+            qrCodeScanButtonContainer.bottomAnchor.constraint(lessThanOrEqualTo: bottomRoundedView.bottomAnchor,
+                                                              constant: -12),
             // Setup QrCodeScanButton
-            qrCodeScanButton.topAnchor.constraint(equalTo: topView.bottomAnchor, constant: -40),
-            qrCodeScanButton.centerXAnchor.constraint(equalTo: topView.centerXAnchor, constant: -70),
-            qrCodeScanButton.heightAnchor.constraint(equalToConstant: 80),
-            qrCodeScanButton.widthAnchor.constraint(equalTo: qrCodeScanButton.heightAnchor),
-            qrCodeScanButton.bottomAnchor.constraint(lessThanOrEqualTo: bottomRoundedView.bottomAnchor, constant: -12),
-            // Setup QrCodeScanButton
-            shareButton.topAnchor.constraint(equalTo: topView.bottomAnchor, constant: -40),
-            shareButton.centerXAnchor.constraint(equalTo: topView.centerXAnchor, constant: 70),
-            shareButton.heightAnchor.constraint(equalToConstant: 80),
-            shareButton.widthAnchor.constraint(equalTo: shareButton.heightAnchor),
-            shareButton.bottomAnchor.constraint(lessThanOrEqualTo: bottomRoundedView.bottomAnchor, constant: -12),
+            qrCodeScanButton.topAnchor.constraint(equalTo: qrCodeScanButtonContainer.topAnchor),
+            qrCodeScanButton.leadingAnchor.constraint(equalTo: qrCodeScanButtonContainer.leadingAnchor),
+            qrCodeScanButton.trailingAnchor.constraint(equalTo: qrCodeScanButtonContainer.trailingAnchor),
+            qrCodeScanButton.bottomAnchor.constraint(equalTo: qrCodeScanButtonContainer.bottomAnchor),
+            // Setup shareButtonContainer
+            shareButtonContainer.topAnchor.constraint(equalTo: topView.bottomAnchor, constant: -40),
+            shareButtonContainer.centerXAnchor.constraint(equalTo: topView.centerXAnchor, constant: 70),
+            shareButtonContainer.heightAnchor.constraint(equalToConstant: 80),
+            shareButtonContainer.widthAnchor.constraint(equalTo: shareButtonContainer.heightAnchor),
+            shareButtonContainer.bottomAnchor.constraint(lessThanOrEqualTo: bottomRoundedView.bottomAnchor,
+                                                         constant: -12),
+            // Setup shareButton
+            shareButton.topAnchor.constraint(equalTo: shareButtonContainer.topAnchor),
+            shareButton.leadingAnchor.constraint(equalTo: shareButtonContainer.leadingAnchor),
+            shareButton.trailingAnchor.constraint(equalTo: shareButtonContainer.trailingAnchor),
+            shareButton.bottomAnchor.constraint(equalTo: shareButtonContainer.bottomAnchor),
             // Setup qrCodeScanButtonTitleLabel
-            qrCodeScanButtonTitleLabel.topAnchor.constraint(greaterThanOrEqualTo: qrCodeCaptionLabel.bottomAnchor, constant: 12),
-            qrCodeScanButtonTitleLabel.bottomAnchor.constraint(equalTo: qrCodeScanButton.topAnchor, constant: -8),
-            qrCodeScanButtonTitleLabel.centerXAnchor.constraint(equalTo: qrCodeScanButton.centerXAnchor),
+            qrCodeScanButtonTitleLabel.topAnchor.constraint(greaterThanOrEqualTo: qrCodeCaptionLabel.bottomAnchor,
+                                                            constant: 12),
+            qrCodeScanButtonTitleLabel.bottomAnchor.constraint(equalTo: qrCodeScanButtonContainer.topAnchor, constant: -8),
+            qrCodeScanButtonTitleLabel.centerXAnchor.constraint(equalTo: qrCodeScanButtonContainer.centerXAnchor),
             // Setup shareButtonTitleLabel
-            shareButtonTitleLabel.topAnchor.constraint(greaterThanOrEqualTo: qrCodeCaptionLabel.bottomAnchor, constant: 12),
-            shareButtonTitleLabel.bottomAnchor.constraint(equalTo: shareButton.topAnchor, constant: -8),
-            shareButtonTitleLabel.centerXAnchor.constraint(equalTo: shareButton.centerXAnchor),
+            shareButtonTitleLabel.topAnchor.constraint(greaterThanOrEqualTo: qrCodeCaptionLabel.bottomAnchor,
+                                                       constant: 12),
+            shareButtonTitleLabel.bottomAnchor.constraint(equalTo: shareButtonContainer.topAnchor, constant: -8),
+            shareButtonTitleLabel.centerXAnchor.constraint(equalTo: shareButtonContainer.centerXAnchor),
             ])
     }
 }
