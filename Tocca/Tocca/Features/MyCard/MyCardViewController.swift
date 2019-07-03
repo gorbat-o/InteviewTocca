@@ -10,9 +10,9 @@ import UIKit
 
 final class MyCardViewController: UIViewController {
     private var topView: UIView!
-
+    
     private var titleLabel: UILabel!
-
+    
     private var qrCodeContainer: UIView!
     private var qrCodeStackView: UIStackView!
     private var profileImageViewContainer: UIView!
@@ -20,25 +20,25 @@ final class MyCardViewController: UIViewController {
     private var profileNameLabel: UILabel!
     private var profilePositionLabel: UILabel!
     private var qrCodeImageView: UIImageView!
-
+    
     private var qrCodeCaptionLabel: UILabel!
-
+    
     private var bottomRoundedView: UIView!
-
+    
     private var qrCodeScanButtonContainer: UIView!
     private var qrCodeScanButtonTitleLabel: UILabel!
     private var qrCodeScanButton: UIButton!
-
+    
     private var shareButtonContainer: UIView!
     private var shareButtonTitleLabel: UILabel!
     private var shareButton: UIButton!
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         setupTopView()
         setupTitleLabel()
-
+        
         setupQrCodeContainer()
         setupQrCodeStackView()
         setupProfileImageViewContainer()
@@ -47,19 +47,19 @@ final class MyCardViewController: UIViewController {
         setupProfilePositionLabel()
         setupQRCodeImageView()
         setupQRCodeStackViewSpacings()
-
+        
         setupQrCodeCaptionLabel()
-
+        
         setupBottomRoundedView()
-
+        
         setupQrCodeScanButtonContainer()
         setupQrCodeScanButtonTitleLabel()
         setupQrCodeScanButton()
-
+        
         setupShareButtonContainer()
         setupShareButtonTitleLabel()
         setupShareButton()
-
+        
         setupConstraints()
     }
 }
@@ -71,7 +71,7 @@ private extension MyCardViewController {
         topView.backgroundColor = UIColor(hex: 0x315CCF)
         view.addSubview(topView)
     }
-
+    
     func setupTitleLabel() {
         titleLabel = UILabel()
         titleLabel.font = .boldSystemFont(ofSize: 35)
@@ -81,7 +81,7 @@ private extension MyCardViewController {
         titleLabel.textColor = UIColor.white
         topView.addSubview(titleLabel)
     }
-
+    
     func setupQrCodeContainer() {
         qrCodeContainer = UIView()
         qrCodeContainer.translatesAutoresizingMaskIntoConstraints = false
@@ -89,7 +89,7 @@ private extension MyCardViewController {
         qrCodeContainer.layer.cornerRadius = 20
         topView.addSubview(qrCodeContainer)
     }
-
+    
     func setupQrCodeStackView() {
         qrCodeStackView = UIStackView()
         qrCodeStackView.translatesAutoresizingMaskIntoConstraints = false
@@ -98,7 +98,7 @@ private extension MyCardViewController {
         qrCodeStackView.backgroundColor = .clear
         qrCodeContainer.addSubview(qrCodeStackView)
     }
-
+    
     func setupProfileImageViewContainer() {
         profileImageViewContainer = UIView(frame: CGRect(x: 0, y: 0, width: 80, height: 80))
         profileImageViewContainer.translatesAutoresizingMaskIntoConstraints = false
@@ -111,7 +111,7 @@ private extension MyCardViewController {
                                                                   cornerRadius: 40).cgPath
         qrCodeStackView.addArrangedSubview(profileImageViewContainer)
     }
-
+    
     func setupProfileImageView() {
         profileImageView = UIImageView()
         profileImageView.image = UIImage(named: "randomPerson")
@@ -121,7 +121,7 @@ private extension MyCardViewController {
         profileImageView.layer.cornerRadius = 40
         profileImageViewContainer.addSubview(profileImageView)
     }
-
+    
     func setupProfileNameLabel() {
         profileNameLabel = UILabel()
         profileNameLabel.font = .boldSystemFont(ofSize: 20)
@@ -131,7 +131,7 @@ private extension MyCardViewController {
         profileNameLabel.setContentCompressionResistancePriority(.required, for: .vertical)
         qrCodeStackView.addArrangedSubview(profileNameLabel)
     }
-
+    
     func setupProfilePositionLabel() {
         profilePositionLabel = UILabel()
         profilePositionLabel.font = .systemFont(ofSize: 12)
@@ -142,7 +142,7 @@ private extension MyCardViewController {
         profilePositionLabel.setContentCompressionResistancePriority(.required, for: .vertical)
         qrCodeStackView.addArrangedSubview(profilePositionLabel)
     }
-
+    
     func setupQRCodeImageView() {
         qrCodeImageView = UIImageView()
         qrCodeImageView.image = UIImage(named: "qrcode")
@@ -150,13 +150,13 @@ private extension MyCardViewController {
         qrCodeImageView.contentMode = .scaleAspectFit
         qrCodeStackView.addArrangedSubview(qrCodeImageView)
     }
-
+    
     func setupQRCodeStackViewSpacings() {
         qrCodeStackView.setCustomSpacing(12.0, after: profileImageViewContainer)
         qrCodeStackView.setCustomSpacing(4.0, after: profileNameLabel)
         qrCodeStackView.setCustomSpacing(12.0, after: profilePositionLabel)
     }
-
+    
     func setupQrCodeCaptionLabel() {
         qrCodeCaptionLabel = UILabel()
         qrCodeCaptionLabel.font = .systemFont(ofSize: 13)
@@ -167,14 +167,14 @@ private extension MyCardViewController {
         qrCodeCaptionLabel.textColor = UIColor(hex: 0x86A2E8)
         topView.addSubview(qrCodeCaptionLabel)
     }
-
+    
     func setupBottomRoundedView() {
         bottomRoundedView = UIView()
         bottomRoundedView.translatesAutoresizingMaskIntoConstraints = false
         bottomRoundedView.backgroundColor = UIColor(hex: 0xF5F8FD)
         view.addSubview(bottomRoundedView)
     }
-
+    
     func setupQrCodeScanButtonTitleLabel() {
         qrCodeScanButtonTitleLabel = UILabel()
         qrCodeScanButtonTitleLabel.font = .boldSystemFont(ofSize: 14)
@@ -184,7 +184,7 @@ private extension MyCardViewController {
         qrCodeScanButtonTitleLabel.text = "SCAN QR/BC"
         view.addSubview(qrCodeScanButtonTitleLabel)
     }
-
+    
     func setupQrCodeScanButtonContainer() {
         qrCodeScanButtonContainer = UIView(frame: CGRect(x: 0, y: 0, width: 80, height: 80))
         qrCodeScanButtonContainer.translatesAutoresizingMaskIntoConstraints = false
@@ -197,7 +197,7 @@ private extension MyCardViewController {
                                                                   cornerRadius: 40).cgPath
         view.addSubview(qrCodeScanButtonContainer)
     }
-
+    
     func setupQrCodeScanButton() {
         qrCodeScanButton = UIButton()
         qrCodeScanButton.backgroundColor = .white
@@ -208,7 +208,7 @@ private extension MyCardViewController {
         qrCodeScanButton.imageEdgeInsets = UIEdgeInsets(top: 25, left: 25, bottom: 25, right: 25)
         qrCodeScanButtonContainer.addSubview(qrCodeScanButton)
     }
-
+    
     func setupShareButtonTitleLabel() {
         shareButtonTitleLabel = UILabel()
         shareButtonTitleLabel.font = .boldSystemFont(ofSize: 14)
@@ -218,7 +218,7 @@ private extension MyCardViewController {
         shareButtonTitleLabel.text = "SHARE"
         view.addSubview(shareButtonTitleLabel)
     }
-
+    
     func setupShareButtonContainer() {
         shareButtonContainer = UIView(frame: CGRect(x: 0, y: 0, width: 80, height: 80))
         shareButtonContainer.translatesAutoresizingMaskIntoConstraints = false
@@ -231,7 +231,7 @@ private extension MyCardViewController {
                                                              cornerRadius: 40).cgPath
         view.addSubview(shareButtonContainer)
     }
-
+    
     func setupShareButton() {
         shareButton = UIButton()
         shareButton.backgroundColor = .white
@@ -242,7 +242,7 @@ private extension MyCardViewController {
         shareButton.imageEdgeInsets = UIEdgeInsets(top: 25, left: 25, bottom: 25, right: 25)
         shareButtonContainer.addSubview(shareButton)
     }
-
+    
     func setupConstraints() {
         NSLayoutConstraint.activate([
             // Setup topView
