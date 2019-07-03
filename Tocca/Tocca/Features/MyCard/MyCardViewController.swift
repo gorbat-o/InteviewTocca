@@ -68,7 +68,7 @@ private extension MyCardViewController {
 
     func setupTitleLabel() {
         titleLabel = UILabel()
-        titleLabel.font = .boldSystemFont(ofSize: 40)
+        titleLabel.font = .boldSystemFont(ofSize: 35)
         titleLabel.textAlignment = .center
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         titleLabel.text = "My Card"
@@ -109,6 +109,7 @@ private extension MyCardViewController {
         profileNameLabel.textAlignment = .center
         profileNameLabel.translatesAutoresizingMaskIntoConstraints = false
         profileNameLabel.text = "Tanya Ofek"
+        profileNameLabel.setContentCompressionResistancePriority(.required, for: .vertical)
         qrCodeStackView.addArrangedSubview(profileNameLabel)
     }
 
@@ -119,6 +120,7 @@ private extension MyCardViewController {
         profilePositionLabel.textAlignment = .center
         profilePositionLabel.translatesAutoresizingMaskIntoConstraints = false
         profilePositionLabel.text = "UX Designer at Tocca.io"
+        profilePositionLabel.setContentCompressionResistancePriority(.required, for: .vertical)
         qrCodeStackView.addArrangedSubview(profilePositionLabel)
     }
 
@@ -211,7 +213,7 @@ private extension MyCardViewController {
             qrCodeContainer.centerXAnchor.constraint(equalTo: topView.centerXAnchor),
             qrCodeContainer.leadingAnchor.constraint(greaterThanOrEqualTo: topView.leadingAnchor, constant: 20),
             qrCodeContainer.trailingAnchor.constraint(lessThanOrEqualTo: topView.trailingAnchor, constant: -20),
-            qrCodeContainer.widthAnchor.constraint(equalToConstant: 250),
+            qrCodeContainer.widthAnchor.constraint(lessThanOrEqualToConstant: 300),
             // Setup QRCodeStackView
             qrCodeStackView.topAnchor.constraint(equalTo: qrCodeContainer.topAnchor, constant: 20),
             qrCodeStackView.leadingAnchor.constraint(equalTo: qrCodeContainer.leadingAnchor, constant: 20),
@@ -221,32 +223,35 @@ private extension MyCardViewController {
             profileImageView.heightAnchor.constraint(equalToConstant: 80),
             profileImageView.widthAnchor.constraint(equalTo: profileImageView.heightAnchor),
             // Setup qrCodeImageView
-            qrCodeImageView.heightAnchor.constraint(equalToConstant: 200),
+            qrCodeImageView.heightAnchor.constraint(lessThanOrEqualToConstant: 300),
             qrCodeImageView.widthAnchor.constraint(equalTo: qrCodeImageView.heightAnchor),
             // Setup qrCodeCaptionLabel
             qrCodeCaptionLabel.topAnchor.constraint(equalTo: qrCodeContainer.bottomAnchor, constant: 8),
             qrCodeCaptionLabel.leadingAnchor.constraint(equalTo: qrCodeContainer.leadingAnchor),
             qrCodeCaptionLabel.trailingAnchor.constraint(equalTo: qrCodeContainer.trailingAnchor),
-            qrCodeCaptionLabel.bottomAnchor.constraint(equalTo: topView.bottomAnchor, constant: -100),
             // Setup bottomRoundedView
             bottomRoundedView.topAnchor.constraint(equalTo: topView.bottomAnchor),
             bottomRoundedView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             bottomRoundedView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            bottomRoundedView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            bottomRoundedView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
             // Setup QrCodeScanButton
             qrCodeScanButton.topAnchor.constraint(equalTo: topView.bottomAnchor, constant: -40),
             qrCodeScanButton.centerXAnchor.constraint(equalTo: topView.centerXAnchor, constant: -70),
             qrCodeScanButton.heightAnchor.constraint(equalToConstant: 80),
             qrCodeScanButton.widthAnchor.constraint(equalTo: qrCodeScanButton.heightAnchor),
+            qrCodeScanButton.bottomAnchor.constraint(lessThanOrEqualTo: bottomRoundedView.bottomAnchor, constant: -12),
             // Setup QrCodeScanButton
             shareButton.topAnchor.constraint(equalTo: topView.bottomAnchor, constant: -40),
             shareButton.centerXAnchor.constraint(equalTo: topView.centerXAnchor, constant: 70),
             shareButton.heightAnchor.constraint(equalToConstant: 80),
             shareButton.widthAnchor.constraint(equalTo: shareButton.heightAnchor),
+            shareButton.bottomAnchor.constraint(lessThanOrEqualTo: bottomRoundedView.bottomAnchor, constant: -12),
             // Setup qrCodeScanButtonTitleLabel
+            qrCodeScanButtonTitleLabel.topAnchor.constraint(greaterThanOrEqualTo: qrCodeCaptionLabel.bottomAnchor, constant: 12),
             qrCodeScanButtonTitleLabel.bottomAnchor.constraint(equalTo: qrCodeScanButton.topAnchor, constant: -8),
             qrCodeScanButtonTitleLabel.centerXAnchor.constraint(equalTo: qrCodeScanButton.centerXAnchor),
             // Setup shareButtonTitleLabel
+            shareButtonTitleLabel.topAnchor.constraint(greaterThanOrEqualTo: qrCodeCaptionLabel.bottomAnchor, constant: 12),
             shareButtonTitleLabel.bottomAnchor.constraint(equalTo: shareButton.topAnchor, constant: -8),
             shareButtonTitleLabel.centerXAnchor.constraint(equalTo: shareButton.centerXAnchor),
             ])

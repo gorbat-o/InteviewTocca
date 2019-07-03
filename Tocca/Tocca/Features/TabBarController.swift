@@ -51,6 +51,7 @@ private extension TabBarController {
 
     func setupTheme() {
         UITabBar.appearance().tintColor = UIColor(hex: 0x315CCF)
+        UITabBar.appearance().backgroundColor = .white
     }
 
     func disableSomeItems() {
