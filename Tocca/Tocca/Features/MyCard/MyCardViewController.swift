@@ -49,10 +49,8 @@ final class MyCardViewController: UIViewController {
         setupQrCodeCaptionLabel()
 
         setupBottomRoundedView()
-        setupQrCodeScanButtonContainer()
         setupQrCodeScanButtonTitleLabel()
         setupQrCodeScanButton()
-        setupShareButtonContainer()
         setupShareButtonTitleLabel()
         setupShareButton()
 
@@ -156,32 +154,46 @@ private extension MyCardViewController {
         view.addSubview(bottomRoundedView)
     }
 
-    func setupQrCodeScanButtonContainer() {
-//        qrCodeScanButtonContainer = UIView()
-//        qrCodeScanButtonContainer.backgroundColor = .blue
-//        view.addSubview(qrCodeScanButtonContainer)
-    }
-
     func setupQrCodeScanButtonTitleLabel() {
-
+        qrCodeScanButtonTitleLabel = UILabel()
+        qrCodeScanButtonTitleLabel.font = .boldSystemFont(ofSize: 14)
+        qrCodeScanButtonTitleLabel.textColor = .white
+        qrCodeScanButtonTitleLabel.textAlignment = .center
+        qrCodeScanButtonTitleLabel.translatesAutoresizingMaskIntoConstraints = false
+        qrCodeScanButtonTitleLabel.text = "SCAN QR/BC"
+        view.addSubview(qrCodeScanButtonTitleLabel)
     }
 
     func setupQrCodeScanButton() {
-
-    }
-
-    func setupShareButtonContainer() {
-//        shareButtonContainer = UIView()
-//        shareButtonContainer.backgroundColor = .red
-//        view.addSubview(shareButtonContainer)
+        qrCodeScanButton = UIButton()
+        qrCodeScanButton.backgroundColor = .white
+        qrCodeScanButton.layer.cornerRadius = 40
+        qrCodeScanButton.setImage(UIImage(named: "plus")?.withRenderingMode(.alwaysTemplate), for: .normal)
+        qrCodeScanButton.tintColor = UIColor(hex: 0x315CCF)
+        qrCodeScanButton.translatesAutoresizingMaskIntoConstraints = false
+        qrCodeScanButton.imageEdgeInsets = UIEdgeInsets(top: 25, left: 25, bottom: 25, right: 25)
+        view.addSubview(qrCodeScanButton)
     }
 
     func setupShareButtonTitleLabel() {
-
+        shareButtonTitleLabel = UILabel()
+        shareButtonTitleLabel.font = .boldSystemFont(ofSize: 14)
+        shareButtonTitleLabel.textColor = .white
+        shareButtonTitleLabel.textAlignment = .center
+        shareButtonTitleLabel.translatesAutoresizingMaskIntoConstraints = false
+        shareButtonTitleLabel.text = "SHARE"
+        view.addSubview(shareButtonTitleLabel)
     }
 
     func setupShareButton() {
-
+        shareButton = UIButton()
+        shareButton.backgroundColor = .white
+        shareButton.layer.cornerRadius = 40
+        shareButton.setImage(UIImage(named: "share")?.withRenderingMode(.alwaysTemplate), for: .normal)
+        shareButton.tintColor = UIColor(hex: 0x315CCF)
+        shareButton.translatesAutoresizingMaskIntoConstraints = false
+        shareButton.imageEdgeInsets = UIEdgeInsets(top: 25, left: 25, bottom: 25, right: 25)
+        view.addSubview(shareButton)
     }
 
     func setupConstraints() {
@@ -195,7 +207,7 @@ private extension MyCardViewController {
             titleLabel.leadingAnchor.constraint(equalTo: topView.leadingAnchor, constant: 8),
             titleLabel.trailingAnchor.constraint(equalTo: topView.trailingAnchor, constant: -8),
             // Setup QRCodeContainer
-            qrCodeContainer.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 20),
+            qrCodeContainer.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 30),
             qrCodeContainer.centerXAnchor.constraint(equalTo: topView.centerXAnchor),
             qrCodeContainer.leadingAnchor.constraint(greaterThanOrEqualTo: topView.leadingAnchor, constant: 20),
             qrCodeContainer.trailingAnchor.constraint(lessThanOrEqualTo: topView.trailingAnchor, constant: -20),
@@ -215,12 +227,28 @@ private extension MyCardViewController {
             qrCodeCaptionLabel.topAnchor.constraint(equalTo: qrCodeContainer.bottomAnchor, constant: 8),
             qrCodeCaptionLabel.leadingAnchor.constraint(equalTo: qrCodeContainer.leadingAnchor),
             qrCodeCaptionLabel.trailingAnchor.constraint(equalTo: qrCodeContainer.trailingAnchor),
-            qrCodeCaptionLabel.bottomAnchor.constraint(equalTo: topView.bottomAnchor, constant: -80),
+            qrCodeCaptionLabel.bottomAnchor.constraint(equalTo: topView.bottomAnchor, constant: -100),
             // Setup bottomRoundedView
             bottomRoundedView.topAnchor.constraint(equalTo: topView.bottomAnchor),
             bottomRoundedView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             bottomRoundedView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             bottomRoundedView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            // Setup QrCodeScanButton
+            qrCodeScanButton.topAnchor.constraint(equalTo: topView.bottomAnchor, constant: -40),
+            qrCodeScanButton.centerXAnchor.constraint(equalTo: topView.centerXAnchor, constant: -70),
+            qrCodeScanButton.heightAnchor.constraint(equalToConstant: 80),
+            qrCodeScanButton.widthAnchor.constraint(equalTo: qrCodeScanButton.heightAnchor),
+            // Setup QrCodeScanButton
+            shareButton.topAnchor.constraint(equalTo: topView.bottomAnchor, constant: -40),
+            shareButton.centerXAnchor.constraint(equalTo: topView.centerXAnchor, constant: 70),
+            shareButton.heightAnchor.constraint(equalToConstant: 80),
+            shareButton.widthAnchor.constraint(equalTo: shareButton.heightAnchor),
+            // Setup qrCodeScanButtonTitleLabel
+            qrCodeScanButtonTitleLabel.bottomAnchor.constraint(equalTo: qrCodeScanButton.topAnchor, constant: -8),
+            qrCodeScanButtonTitleLabel.centerXAnchor.constraint(equalTo: qrCodeScanButton.centerXAnchor),
+            // Setup shareButtonTitleLabel
+            shareButtonTitleLabel.bottomAnchor.constraint(equalTo: shareButton.topAnchor, constant: -8),
+            shareButtonTitleLabel.centerXAnchor.constraint(equalTo: shareButton.centerXAnchor),
             ])
     }
 }
